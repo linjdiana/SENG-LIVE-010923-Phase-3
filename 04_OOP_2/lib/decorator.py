@@ -5,31 +5,42 @@
 
     # Create functions to be used as callbacks 
 
-def walk(pet):
-    print(f'{pet} has been walked!')
+# def walk(pet):
+#     print(f'{pet} has been walked!')
 
-def feed(pet):
-    print(f'{pet} has been fed!')
+# def feed(pet):
+#     print(f'{pet} has been fed!')
 
     # Create a higher-order function that will take a callback as an argument
-# def execute_task(func):
 
-#     # callback function invoked
+# Higher Order Function => Accepts a Function
+# def execute_task(func):
+    
+#     # Callback Function Invocation
 #     return func("Rose")
 
-# execute_task(walk)
+# # execute_task(walk)
+# execute_task(feed)
 
 # 2. ✅ Create a higher-order function that returns a function
 
 # def execute_task():
-#     def feed(pet):
-#         return f'{pet} has been fed'
+#     def feed(pet="Rose"):
+#         print(f'{pet} has been fed!')
+
+#     # def walk(pet="Rose"):
+#     #     print(f'{pet} has been walked!')
     
 #     return feed
 
-# execute_task()
+    # return feed, walk => Returns a Tuple of Function References
 
-# execute_task()("Rose") is the same as feed("Rose")
+# feed = execute_task() # => feed Function Reference
+
+# feed() #=> "Rose has been fed!"
+# feed("Spot") #=> "Spot has been fed!""
+
+# execute_task()("Rose")
 
 # 3. ✅ Decorator
 
@@ -40,15 +51,16 @@ def feed(pet):
 
 # Tools:
 
-    # .format()
+    # .format() => Method (String)
     # https://www.geeksforgeeks.org/python-string-format-method/
 
-    # .round()
+    # .round() => Format Actual Calculation of Discount
     # https://www.geeksforgeeks.org/round-function-python/
 
-# Decorator 
+# Decorator
 def coupon_calculator(func):
-    # inner function 
+    
+    # Inner Function
     def report_price():
         print('Initial Price = $35.00')
         final_price = func(35.00)
@@ -56,11 +68,13 @@ def coupon_calculator(func):
 
     return report_price
 
-# Callback function to calculate new price
-def calculate_price(price):
-    # we end up with a floating point number rounded to the nearest hundredth
-    return '{:.2f}'.format(round(price / 2, 2))
-
+# Callback Function to Calculate New Price
+# def calculate_price(price):
+    
+#     # We end up with a Floating Point Number Rounded to the Nearest
+#     # Hundreth
+#     # .2f => Two Decimal Point Floating Number
+#     return '{:.2f}'.format(round(price / 2, 2))
 
 # Try using a decorator with / without pie syntax '@'
 
@@ -70,10 +84,25 @@ def calculate_price(price):
 # report_price()
 
 # With pie syntax
+
 @coupon_calculator
 def calculate_price(price):
-    # we end up with a floating point number rounded to the nearest hundredth
+    
+    # We end up with a Floating Point Number Rounded to the Nearest
+    # Hundreth
+    # .2f => Two Decimal Point Floating Number
     return '{:.2f}'.format(round(price / 2, 2))
 
-
 calculate_price()
+
+# @coupon_calculator
+# def some_other_function():
+#     return "Something"
+
+# some_other_function()
+
+# @coupon_calculator
+# def some_other_function():
+#     return "Something"
+
+# some_other_function()
